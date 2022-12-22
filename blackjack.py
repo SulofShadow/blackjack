@@ -11,7 +11,6 @@ class Baralho:
             carta = random.randint(1, 52)
         self.cartas_jogadas.append(carta)
         onde.append(carta)
-        print(self.cartas_jogadas, 'todas')
 
     @staticmethod
     def naipe(numero_carta):
@@ -75,10 +74,6 @@ class Jogador(Baralho):
         self.dinheiro = dinheiro
         self.cartas_mao = list()
 
-    def pedir_carta(self):
-        self.dar_cartas(self.cartas_mao)
-        print(self.cartas_mao, 'jogador')
-
     def __str__(self):
         for c in self.cartas_mao:
             print(self.visual_carta(self.naipe(c), self.numero(c)), end=' ')
@@ -90,30 +85,26 @@ class Mesa(Baralho):
         super(Mesa, self).__init__()
         self.cartas_mesa = list()
 
-    def pedir_carta(self):
-        self.dar_cartas(self.cartas_mesa)
-        print(self.cartas_mesa, 'mesa')
-
     def __str__(self):
         for c in self.cartas_mesa:
             print(self.visual_carta(self.naipe(c), self.numero(c)), end=' ')
         return ''
 
 
-
-
-
-
 joao = Jogador(500)
-joao.pedir_carta()
-joao.pedir_carta()
-
 mesa = Mesa()
-mesa.pedir_carta()
-mesa.pedir_carta()
+baralho = Baralho()
 
+baralho.dar_cartas(joao.cartas_mao)
+baralho.dar_cartas(joao.cartas_mao)
+
+baralho.dar_cartas(mesa.cartas_mesa)
+baralho.dar_cartas(mesa.cartas_mesa)
 
 print('MESA')
 print(mesa)
 print('JOGADOR')
 print(joao)
+
+
+print(baralho.cartas_jogadas)
