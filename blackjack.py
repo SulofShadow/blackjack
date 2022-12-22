@@ -3,28 +3,29 @@ import random
 
 class Baralho:
     def __init__(self):
-        self.jogo = list()
+        self.cartas_jogadas = list()
 
-    def __str__(self):
-        return (self.visual_carta(self.naipe(self.jogo[-1]), self.numero(self.jogo[-1])))
+    def dar_cartas(self, onde):
+        carta = random.randint(1, 52)
+        while carta in self.cartas_jogadas:
+            carta = random.randint(1, 52)
+        self.cartas_jogadas.append(carta)
+        onde.append(carta)
+        print(self.cartas_jogadas, 'todas')
 
-    def dar_cartas(self):
-        carta = random.randint(1, 53)
-        if carta not in self.jogo:
-            self.jogo.append(carta)
-            print(carta)
-
-    def naipe(self, numero_carta):
-        if numero_carta < 14 and numero_carta > 0:
+    @staticmethod
+    def naipe(numero_carta):
+        if 14 > numero_carta > 0:
             return "♣"
-        if numero_carta < 27 and numero_carta > 13:
+        if 27 > numero_carta > 13:
             return "♦"
-        if numero_carta < 40 and numero_carta > 26:
+        if 40 > numero_carta > 26:
             return "♥"
-        if numero_carta < 53 and numero_carta > 39:
+        if 53 > numero_carta > 39:
             return "♠"
 
-    def numero(self, numero):
+    @staticmethod
+    def numero(numero):
         if numero < 14:
             return numero
         else:
@@ -32,7 +33,8 @@ class Baralho:
                 numero -= 13
             return numero
 
-    def visual_carta(self, naipe, numero):
+    @staticmethod
+    def visual_carta(naipe, numero):
         if numero == 1:
             numero = "A"
         if numero == 11:
@@ -43,29 +45,75 @@ class Baralho:
             numero = "K"
 
         if numero != 10:
-            a = f"""
-                            _________
+            a = f""" 
+                            __________
+                            |{numero}       |
+                            |{naipe}      |
+                            |   {naipe}   |
+                            |       {numero}|
+                            |      {naipe}|
+                            ----------"""
+
+        else:
+            a = f"""        
+                            __________
                             |{numero}      |
                             |{naipe}      |
                             |   {naipe}   |
                             |      {numero}|
                             |      {naipe}|
-                            ---------"""
-
-        else:
-            a = f"""
-                            ________
-                            |{numero}     |
-                            |{naipe}      |
-                            |   {naipe}   |
-                            |     {numero}|
-                            |      {naipe}|
-                            --------"""
+                            ----------"""
 
         return a
 
 
-baralho = Baralho()
-baralho.dar_cartas()
-print(baralho)
+class Jogador(Baralho):
 
+    # 1° init é do jogador, e o super é indicando o pai
+    def __init__(self, dinheiro):
+        super(Jogador, self).__init__()
+        self.dinheiro = dinheiro
+        self.cartas_mao = list()
+
+    def pedir_carta(self):
+        self.dar_cartas(self.cartas_mao)
+        print(self.cartas_mao, 'jogador')
+
+    def __str__(self):
+        for c in self.cartas_mao:
+            print(self.visual_carta(self.naipe(c), self.numero(c)), end=' ')
+        return ''
+
+
+class Mesa(Baralho):
+    def __init__(self):
+        super(Mesa, self).__init__()
+        self.cartas_mesa = list()
+
+    def pedir_carta(self):
+        self.dar_cartas(self.cartas_mesa)
+        print(self.cartas_mesa, 'mesa')
+
+    def __str__(self):
+        for c in self.cartas_mesa:
+            print(self.visual_carta(self.naipe(c), self.numero(c)), end=' ')
+        return ''
+
+
+
+
+
+
+joao = Jogador(500)
+joao.pedir_carta()
+joao.pedir_carta()
+
+mesa = Mesa()
+mesa.pedir_carta()
+mesa.pedir_carta()
+
+
+print('MESA')
+print(mesa)
+print('JOGADOR')
+print(joao)
