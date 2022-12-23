@@ -64,3 +64,25 @@ class Baralho:
                             ----------"""
 
         return a
+
+    def total(self, cartas):
+        total = 0
+        numero_passado = list()
+        for c in cartas:
+            numero = self.numero(c)
+            numero_passado.append(self.numero(c))
+            if numero == 11:
+                total += 10
+            elif numero == 12:
+                total += 10
+            elif numero == 13:
+                total += 10
+            elif numero == 1:
+                total += 11
+            else:
+                total += numero
+            print(numero_passado)
+            if 1 in numero_passado:
+                if total > 21:
+                    total -= 10
+        return total

@@ -23,13 +23,13 @@ ____________________________________
 |⢸⡇⠈⣷⡀⢀⡾⠀⢸⡇⠀⢸⡟⠛⠛⠃⠀⠀⠙⠿⣦⡄⢀⣿⠀⠀⢿⡄ ⠀|
 |⢸⡇⠀⠸⣧⣼⠃ ⢸⡇⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠈⣿⠀⣸⠟⠛⠛⠻⣧⠀ |
 |⠸⠇⠀⠀⠻⠏⠀⠀⠸⠇⠀⠸⠷⠶⠶⠶⠀⠻⠶⠶⠞⠃⠠⠟⠀⠀⠀⠀⠹⠆ |
-------------------------------------|
+-------------------------------------
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀""")
 print(mesa)
 
 print("""
 ___________________________________
-|⠀   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ |
+|⠀   ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ |   
 |    ⢀⣀⠀⠀⠀⠀⢀⣀⠀⠀⠈⢀⣉⠉⠀⠀⠀⢀⣀⣀⣀⠀⠀⠀   |
 |    ⢸⠻⡇⠀⠀⢀⡿⣿⠀⠀⠀⡼⢹⡆⠀⠀⢰⡏⠀⠀⠈⣷⠀    |
 |    ⢸⠀⢻⡄⠀⡼⠁⣿⠀⠀⢸⠇⠀⢿⡀⠀⣿⠀⠀⠀⠀⢸⡇⠀   |
@@ -40,14 +40,16 @@ ___________________________________
 print(jogador)
 
 escolha_menu = ''
-while escolha_menu not in [1,2,3,4]:
+while escolha_menu not in [1, 2, 3, 4]:
     escolha_menu = int(input('Ⅰ- Pede mais uma\nⅡ- Dobra\nⅢ- Ver mão\nⅣ- Ver mesa\n'))
 
 if escolha_menu == 1:
     baralho.dar_cartas(jogador.cartas_mao)
+    print(jogador)
 if escolha_menu == 2:
     baralho.dar_cartas(jogador.cartas_mao)
     dinheiro_rodada *= 2
+    print(jogador)
 if escolha_menu == 3:
     print(jogador)
 if escolha_menu == 4:

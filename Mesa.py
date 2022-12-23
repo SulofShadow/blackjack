@@ -9,5 +9,6 @@ class Mesa(Baralho):
 # colocar um total depois, pegal j, q, k como 10 e ás com 11 ou 2
     def __str__(self):
         for c in self.cartas_mesa:
-            print(self.visual_carta(self.naipe(c), self.numero(c)), end=' ')
+            print(self.visual_carta(self.naipe(c), self.numero(c)), end='\t\t\t')
+        print(self.total(self.cartas_mesa))
         return ''
