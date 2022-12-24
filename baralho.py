@@ -70,7 +70,7 @@ class Baralho:
         numero_passado = list()
         for c in cartas:
             numero = self.numero(c)
-            numero_passado.append(self.numero(c))
+            numero_passado.append(numero)
             if numero == 11:
                 total += 10
             elif numero == 12:
