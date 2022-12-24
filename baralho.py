@@ -81,7 +81,6 @@ class Baralho:
                 total += 11
             else:
                 total += numero
-            print(numero_passado)
             if 1 in numero_passado:
                 if total > 21:
                     total -= 10
